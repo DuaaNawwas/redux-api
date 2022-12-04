@@ -3,21 +3,17 @@ import { Table } from "flowbite-react";
 import React from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addMovies, deleteMovie } from "./movieSlice";
+import { addMovies, deleteMovie, fetchMovies } from "./movieSlice";
 export default function Movies() {
 	const dispatch = useDispatch();
 	const handleDelete = (id) => {
 		dispatch(deleteMovie(id));
 	};
-	const movies = useSelector((state) => state.movie.movies);
+	const movies = useSelector((state) => state.movies.movies);
 	console.log(movies);
-	const APIURL =
-		"https://api.themoviedb.org/4/discover/movie?sort_by=popularity.desc&api_key=2587fe27ddb1758c80e76c271cedfd75&page=1";
+
 	useEffect(() => {
-		axios.get(APIURL).then((res) => {
-			console.log(res.data.results);
-			dispatch(addMovies(res.data.results));
-		});
+		dispatch(fetchMovies());
 	}, []);
 
 	return (

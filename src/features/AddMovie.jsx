@@ -9,7 +9,7 @@ export default function AddMovie() {
 		release_date: "",
 		vote_average: "",
 	});
-	const movies = useSelector((state) => state.movie.movies);
+	const movies = useSelector((state) => state.movies.movies);
 	console.log("==========");
 	console.log(movies);
 	console.log("movies");
